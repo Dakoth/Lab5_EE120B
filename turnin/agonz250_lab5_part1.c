@@ -34,23 +34,23 @@ int main(void) {
 			tmpC = tmpC | 0x20; 
 		}
 	       	//tmpA = ~PINA;	
-		if ( tmpA == 3 || tmpA == 4 ) { //if 3 or 4, PC5 and PC4 light up  
+		if ( tmpA >= 3 ) { //if 3 or 4, PC5 and PC4 light up  
 			tmpC = tmpC | 0x10;
 		}
 		//tmpA = ~PINA;
-		if ( tmpA > 4 ) { //if 5 or 6, PC5-PC3 on 
+		if ( tmpA >= 5 ) { //if 5 or 6, PC5-PC3 on 
 			tmpC = tmpC | 0x08;
 		}
 		//tmpA = ~PINA;
-		if ( tmpA > 6 ) { //7-9, PC5-PC2
+		if ( tmpA >= 7 ) { //7-9, PC5-PC2
 			tmpC = tmpC | 0x04;
 		}
 		//tmpA = ~PINA;
-		if ( tmpA > 9 ) { //10-12, PC5-PC1
+		if ( tmpA >= 10 ) { //10-12, PC5-PC1
 			tmpC = tmpC | 0x2;
 		}
 		//tmpA = ~PINA;
-		if ( tmpA > 12 ) { //13-15, PC5-PC0
+		if ( tmpA >= 13 ) { //13-15, PC5-PC0
 			tmpC = tmpC | 0x01;
 		}
 		
