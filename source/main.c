@@ -15,6 +15,7 @@
 
 int main(void) {
 /* Insert DDR and PORT initializations */
+/* Insert DDR and PORT initializations */
 	DDRA = 0x00; PORTA = 0xFF;	
 	//Makes all port A's input pins as inputs; initalized to 1s
 	DDRC = 0xFF; PORTC = 0x00;	
@@ -29,33 +30,29 @@ int main(void) {
 		tmpA = ~PINA; 
 		
 		//2.) perform computation
-		if ( (tmpA <= 2) && (tmpA > 0)) { //If 1 or 2, PC5 lights up 0010 0000 
-			tmpC = (tmpC & 0x20) | 0x20; 
+		if ( tmpA > 0) { //If 1 or 2, PC5 lights up  
+			tmpC = tmpC | 0x20; 
 		}
-	       	//	tmpA = ~PINA;	
-		else if ( tmpA <= 4 ) { //if 3 or 4, PC5 and PC4 light up  0011 0000
-			tmpC = (tmpC & 0x30) | 0x30;
-		}
-		//tmpA = ~PINA;
-		else if ( tmpA <= 6 ) { //if 5 or 6, PC5-PC3 on 0011 1000 
-			tmpC = (tmpC & 0x38) | 0x38;
+	       	//tmpA = ~PINA;	
+		if ( tmpA > 2 ) { //if 3 or 4, PC5 and PC4 light up  
+			tmpC = tmpC | 0x10;
 		}
 		//tmpA = ~PINA;
-		else if ( tmpA <= 9 ) { //7-9, PC5-PC2 0011 1100
-			tmpC = (tmpC & 0x3C) | 0x3C;
+		if ( tmpA > 4 ) { //if 5 or 6, PC5-PC3 on 
+			tmpC = tmpC | 0x08;
 		}
 		//tmpA = ~PINA;
-		else if ( tmpA <= 12 ) { //10-12, PC5-PC1 0011 1110
-			tmpC = (tmpC & 0x3E) | 0x3E;
+		if ( tmpA > 6 ) { //7-9, PC5-PC2
+			tmpC = tmpC | 0x04;
 		}
 		//tmpA = ~PINA;
-		else if ( tmpA <= 15) { //13-15, PC5-PC0 0011 1111
-			tmpC = (tmpC & 0x3F) | 0x3F;
+		if ( tmpA > 9 ) { //10-12, PC5-PC1
+			tmpC = tmpC | 0x2;
 		}
-		else {	//else just set it to 0
-			tmpC = tmpC & 0x00;
+		//tmpA = ~PINA;
+		if ( tmpA > 12 ) { //13-15, PC5-PC0
+			tmpC = tmpC | 0x01;
 		}
-
 		
 		//If tmp < 5,, light up PC6
 		//tmpA = ~PINA;			
@@ -68,6 +65,9 @@ int main(void) {
 		
 		//3.) Write Output 
 		PORTC = tmpC;
+
+		tmpC = 0x00; //reset the tmp variables
+		tmpA = 0x00;
     	}
     	return 1;
 }
