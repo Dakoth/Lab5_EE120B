@@ -30,28 +30,28 @@ int main(void) {
 		tmpA = ~PINA; //change this back to ~PINA after testing 
 		
 		//2.) perform computation
-		if ( tmpA > 0) { //If 1 or 2, PC5 lights up  
-			tmpC = (tmpC & 0x20) | 0x20; 
+		if ( tmpA  > 0) { //If 1 or 2, PC5 lights up  
+			tmpC = tmpC | 0x20; 
 		}
 	       	//tmpA = ~PINA;	
 		if ( tmpA >= 3 ) { //if 3 or 4, PC5 and PC4 light up  
-			tmpC = (tmpC & 0x10) | 0x10;
+			tmpC = tmpC | 0x10;
 		}
 		//tmpA = ~PINA;
 		if ( tmpA >= 5 ) { //if 5 or 6, PC5-PC3 on 
-			tmpC = (tmpC & 0x08) | 0x08;
+			tmpC = tmpC | 0x08;
 		}
 		//tmpA = ~PINA;
 		if ( tmpA >= 7 ) { //7-9, PC5-PC2
-			tmpC = (tmpC & 0x04) | 0x04;
+			tmpC = tmpC | 0x04;
 		}
 		//tmpA = ~PINA;
 		if ( tmpA >= 10 ) { //10-12, PC5-PC1
-			tmpC = (tmpC & 0x02) | 0x02;
+			tmpC = tmpC | 0x02;
 		}
 		//tmpA = ~PINA;
 		if ( tmpA >= 13 ) { //13-15, PC5-PC0
-			tmpC = (tmpC & 0x01) | 0x01;
+			tmpC = tmpC |  0x01;
 		}
 		
 		//If tmp < 5,, light up PC6
