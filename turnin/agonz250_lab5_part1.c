@@ -5,8 +5,9 @@
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
- *	LINK: 
+ *
  *	code, is my own original work.
+ *	VIDEO LINk: https://drive.google.com/file/d/1niIESB7Slv5YYPzfGCl6F6Uxo_MxFqC0/view?usp=sharing
  */
 #include <avr/io.h>
 #ifdef _SIMULATE_
