@@ -50,17 +50,25 @@ void Tick() {
 			break;
 
 		case incHold: //Might need a transition for resetting?
-			if ((tmpA & 0x01) == 0x01) { 
+			if( ((tmpA & 0x01) == 0x01) && ((tmpA & 0x02) == 0x00) ) { //if PA0 && !PA1 
 				state = incHold;
-			}
+				}
+	 			
+			else if ( (tmpA & 0x03) == 0x03  ) { //added this so can reset
+				state = reset;
+			}	
 			else { 
 				state = Wait;
 			}			
 			break;
 
 		case decHold:
-			if ((tmpA & 0x02) == 0x02) {
+			if( ((tmpA & 0x02) == 0x02) && ((tmpA & 0x01) == 0x00) ) { //if PA0 && !PA1 
+			
 				state = decHold;
+			}
+			else if ( (tmpA & 0x03) == 0x03) {
+				state = reset;
 			}
 			else {
 				state = Wait;
